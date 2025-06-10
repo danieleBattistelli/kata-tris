@@ -2,7 +2,7 @@ const cells = document.querySelectorAll(".cell");
 let currentPlayer = "X";
 
 // Aggiungi un gestore di eventi a ciascuna cella
-cells.forEach(cell => {
+cells.forEach((cell, idx) => {
     cell.addEventListener("click", () => {
         if (cell.textContent === "") {
             cell.textContent = currentPlayer;
@@ -21,16 +21,25 @@ cells.forEach(cell => {
             console.log("giocatore attuale: ", currentPlayer);
 
             // Verifica vittoria
-            if (checkWinWithNeighbors(formattedBoard, currentPlayer)) {
-                alert(`${currentPlayer} ha vinto!`);
-                resetBoard();
+            const winCells = checkWinWithNeighbors(formattedBoard, currentPlayer);
+            if (winCells) {
+                // Evidenzia le celle vincenti
+                winCells.forEach(([row, col]) => {
+                    cells[row * 3 + col].classList.add("winner");
+                });
+                setTimeout(() => {
+                    alert(`${currentPlayer} ha vinto!`);
+                    resetBoard();
+                }, 100);
                 return;
             }
 
             // Verifica pareggio
             if (Array.from(cells).every(cell => cell.textContent)) {
-                alert("Pareggio!");
-                resetBoard();
+                setTimeout(() => {
+                    alert("Pareggio!");
+                    resetBoard();
+                }, 100);
             }
 
             // Cambia giocatore
@@ -41,28 +50,34 @@ cells.forEach(cell => {
 
 // Funzione di reset
 function resetBoard() {
-    cells.forEach(cell => cell.textContent = "");
+    cells.forEach(cell => {
+        cell.textContent = "";
+        cell.classList.remove("winner");
+    });
     currentPlayer = "X";
 }
 
-
-
-// Funzione per verificare la vittoria controllando caselle adiacenti
+// Funzione per verificare la vittoria e restituire le celle vincenti
 function checkWinWithNeighbors(board, player) {
+    // Combinazioni vincenti: righe, colonne, diagonali
+    const winPatterns = [
+        // Righe
+        [[0, 0], [0, 1], [0, 2]],
+        [[1, 0], [1, 1], [1, 2]],
+        [[2, 0], [2, 1], [2, 2]],
+        // Colonne
+        [[0, 0], [1, 0], [2, 0]],
+        [[0, 1], [1, 1], [2, 1]],
+        [[0, 2], [1, 2], [2, 2]],
+        // Diagonali
+        [[0, 0], [1, 1], [2, 2]],
+        [[0, 2], [1, 1], [2, 0]]
+    ];
 
-    // Contatore di occorrenze
-    let counts = { rows: [0, 0, 0], cols: [0, 0, 0], diag1: 0, diag2: 0 };
-
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-            if (board[i][j] === player) {
-                counts.rows[i]++;
-                counts.cols[j]++;
-                if (i === j) counts.diag1++;
-                if (i + j === 2) counts.diag2++;
-            }
+    for (const pattern of winPatterns) {
+        if (pattern.every(([r, c]) => board[r][c] === player)) {
+            return pattern; // Restituisce le coordinate delle celle vincenti
         }
     }
-
-    return counts.rows.includes(3) || counts.cols.includes(3) || counts.diag1 === 3 || counts.diag2 === 3;
+    return null;
 }
