@@ -74,9 +74,10 @@ function checkWinWithNeighbors(board, player) {
         [[0, 2], [1, 1], [2, 0]]
     ];
 
+    // Restituisce le coordinate delle celle vincenti
     for (const pattern of winPatterns) {
         if (pattern.every(([r, c]) => board[r][c] === player)) {
-            return pattern; // Restituisce le coordinate delle celle vincenti
+            return pattern; 
         }
     }
     return null;
