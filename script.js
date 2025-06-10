@@ -27,25 +27,29 @@ cells.forEach(cell => {
                 return;
             }
 
+            // Verifica pareggio
+            if (Array.from(cells).every(cell => cell.textContent)) {
+                alert("Pareggio!");
+                resetBoard();
+            }
+
             // Cambia giocatore
             currentPlayer = currentPlayer === "X" ? "O" : "X";
         }
     });
-
-    
 });
 
 // Funzione di reset
-    function resetBoard() {
-        cells.forEach(cell => cell.textContent = "");
-        currentPlayer = "X";
-    }
+function resetBoard() {
+    cells.forEach(cell => cell.textContent = "");
+    currentPlayer = "X";
+}
 
 
 
 // Funzione per verificare la vittoria controllando caselle adiacenti
 function checkWinWithNeighbors(board, player) {
-    
+
     // Contatore di occorrenze
     let counts = { rows: [0, 0, 0], cols: [0, 0, 0], diag1: 0, diag2: 0 };
 
