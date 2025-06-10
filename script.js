@@ -1,6 +1,23 @@
 const cells = document.querySelectorAll(".cell");
 let currentPlayer = "X";
 
+// Inserisci il banner nel DOM se non esiste già
+let banner = document.getElementById('game-message-banner');
+if (!banner) {
+    banner = document.createElement('div');
+    banner.id = 'game-message-banner';
+    document.body.appendChild(banner);
+}
+
+function showBannerMessage(msg) {
+    banner.textContent = msg;
+    banner.style.display = 'block';
+}
+
+function hideBannerMessage() {
+    banner.style.display = 'none';
+}
+
 // Aggiungi un gestore di eventi a ciascuna cella
 cells.forEach((cell, idx) => {
     cell.addEventListener("click", () => {
@@ -28,8 +45,11 @@ cells.forEach((cell, idx) => {
                     cells[row * 3 + col].classList.add("winner");
                 });
                 setTimeout(() => {
-                    alert(`${currentPlayer} ha vinto!`);
-                    resetBoard();
+                    showBannerMessage(`${currentPlayer} ha vinto!`);
+                    setTimeout(() => {
+                        hideBannerMessage();
+                        resetBoard();
+                    }, 1800);
                 }, 100);
                 return;
             }
@@ -37,8 +57,11 @@ cells.forEach((cell, idx) => {
             // Verifica pareggio
             if (Array.from(cells).every(cell => cell.textContent)) {
                 setTimeout(() => {
-                    alert("Pareggio!");
-                    resetBoard();
+                    showBannerMessage("Pareggio!");
+                    setTimeout(() => {
+                        hideBannerMessage();
+                        resetBoard();
+                    }, 1800);
                 }, 100);
             }
 
@@ -55,6 +78,7 @@ function resetBoard() {
         cell.classList.remove("winner");
     });
     currentPlayer = "X";
+    hideBannerMessage();
 }
 
 // Funzione per verificare la vittoria e restituire le celle vincenti
@@ -77,7 +101,7 @@ function checkWinWithNeighbors(board, player) {
     // Restituisce le coordinate delle celle vincenti
     for (const pattern of winPatterns) {
         if (pattern.every(([r, c]) => board[r][c] === player)) {
-            return pattern; 
+            return pattern;
         }
     }
     return null;
