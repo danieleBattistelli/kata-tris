@@ -33,6 +33,26 @@ if (localStorage.getItem('oWins')) {
 const xWinsSpan = document.getElementById('x-wins');
 const oWinsSpan = document.getElementById('o-wins');
 
+// --- BOTTONE RESET ---
+let resetBtn = document.getElementById('reset-counter-btn');
+if (!resetBtn) {
+    resetBtn = document.createElement('button');
+    resetBtn.id = 'reset-counter-btn';
+    resetBtn.textContent = 'Reset';
+    // Inserisci il bottone subito dopo il contatore
+    oWinsSpan.parentNode.insertBefore(resetBtn, oWinsSpan.nextSibling);
+    // Aggiungi un po' di margine
+    resetBtn.style.marginLeft = '10px';
+    resetBtn.style.marginTop = '10px';
+}
+
+// Gestore evento per il reset del contatore
+resetBtn.addEventListener('click', () => {
+    xWins = 0;
+    oWins = 0;
+    updateWinCounter();
+});
+
 function updateWinCounter() {
     xWinsSpan.textContent = `X: ${xWins}`;
     oWinsSpan.textContent = `O: ${oWins}`;
