@@ -18,6 +18,29 @@ function hideBannerMessage() {
     banner.style.display = 'none';
 }
 
+// Contatore vittorie
+let xWins = 0;
+let oWins = 0;
+
+// Recupera i punteggi dal localStorage se presenti
+if (localStorage.getItem('xWins')) {
+    xWins = parseInt(localStorage.getItem('xWins'), 10);
+}
+if (localStorage.getItem('oWins')) {
+    oWins = parseInt(localStorage.getItem('oWins'), 10);
+}
+
+const xWinsSpan = document.getElementById('x-wins');
+const oWinsSpan = document.getElementById('o-wins');
+
+function updateWinCounter() {
+    xWinsSpan.textContent = `X: ${xWins}`;
+    oWinsSpan.textContent = `O: ${oWins}`;
+    // Salva i punteggi nel localStorage
+    localStorage.setItem('xWins', xWins);
+    localStorage.setItem('oWins', oWins);
+}
+
 // Aggiungi un gestore di eventi a ciascuna cella
 cells.forEach((cell, idx) => {
     cell.addEventListener("click", () => {
@@ -46,6 +69,13 @@ cells.forEach((cell, idx) => {
                 });
                 setTimeout(() => {
                     showBannerMessage(`${currentPlayer} ha vinto!`);
+                    // Aggiorna il conteggio delle vittorie
+                    if (currentPlayer === "X") {
+                        xWins++;
+                    } else {
+                        oWins++;
+                    }
+                    updateWinCounter();
                     setTimeout(() => {
                         hideBannerMessage();
                         resetBoard();
@@ -106,3 +136,6 @@ function checkWinWithNeighbors(board, player) {
     }
     return null;
 }
+
+// Inizializza il contatore all'avvio
+updateWinCounter();

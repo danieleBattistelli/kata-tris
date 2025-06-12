@@ -180,3 +180,32 @@ body {
         2px -2px 0 #000,
         -2px -2px 0 #000;
 }
+
+#win-counter {
+    position: absolute;
+    top: 24px;
+    left: 32px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: 'Press Start 2P', 'Consolas', 'monospace', monospace;
+    font-size: 1em;
+    color: #fff;
+    text-shadow:
+        2px 2px 0 #000,
+        -2px 2px 0 #000,
+        2px -2px 0 #000,
+        -2px -2px 0 #000;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 8px 18px;
+    border-radius: 12px;
+    border: 2px solid #fff;
+}
+
+#win-counter span {
+    margin: 0;
+    padding: 0;
+    letter-spacing: 2px;
+}
