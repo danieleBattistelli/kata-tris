@@ -61,10 +61,23 @@ function updateWinCounter() {
     localStorage.setItem('oWins', oWins);
 }
 
-// Aggiungi un gestore di eventi a ciascuna cella
+// --- SUONO CLICK ---
+// Usa il file locale "shot.mp3"
+const clickSound = new Audio("click.mp3");
+
+// --- SUONO VITTORIA ---
+const winSound = new Audio("win.mp3");
+
+// --- SUONO PAREGGIO ---
+const drawSound = new Audio("draw.mp3");
+
 cells.forEach((cell, idx) => {
     cell.addEventListener("click", () => {
         if (cell.textContent === "") {
+            // Riproduci il suono di click
+            clickSound.currentTime = 0; // resetta per click rapidi
+            clickSound.play();
+
             cell.textContent = currentPlayer;
 
             // Creazione della griglia di gioco
@@ -83,6 +96,10 @@ cells.forEach((cell, idx) => {
             // Verifica vittoria
             const winCells = checkWinWithNeighbors(formattedBoard, currentPlayer);
             if (winCells) {
+                // Riproduci il suono di vittoria
+                winSound.currentTime = 0;
+                winSound.play();
+
                 // Evidenzia le celle vincenti
                 winCells.forEach(([row, col]) => {
                     cells[row * 3 + col].classList.add("winner");
@@ -106,6 +123,10 @@ cells.forEach((cell, idx) => {
 
             // Verifica pareggio
             if (Array.from(cells).every(cell => cell.textContent)) {
+                // Riproduci il suono di pareggio
+                drawSound.currentTime = 0;
+                drawSound.play();
+
                 setTimeout(() => {
                     showBannerMessage("Pareggio!");
                     setTimeout(() => {
