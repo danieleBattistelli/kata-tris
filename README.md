@@ -19,4 +19,8 @@
   <u>Il gioco tiene il conteggio delle vittorie e lo salva nel local storage!</u>
 </p>
 
+Il progetto è disponibile in due versioni:
+- **Versione Browser**: si trova nella cartella `Browser` e si avvia aprendo il file `index.html` con il browser.
+- **Versione Plug-in**: si trova nella cartella `Plug-in` e può essere caricata come plug-in nel browser.
+
 ---
