@@ -62,21 +62,23 @@ function updateWinCounter() {
 }
 
 // --- SUONO CLICK ---
-// Usa il file locale "shot.mp3"
-const clickSound = new Audio("click.mp3");
+// Usa il percorso corretto per le risorse dell'estensione
+const clickSound = new Audio(chrome.runtime.getURL("click.mp3"));
 
 // --- SUONO VITTORIA ---
-const winSound = new Audio("win.mp3");
+const winSound = new Audio(chrome.runtime.getURL("win.mp3"));
 
 // --- SUONO PAREGGIO ---
-const drawSound = new Audio("draw.mp3");
+const drawSound = new Audio(chrome.runtime.getURL("draw.mp3"));
 
 cells.forEach((cell, idx) => {
     cell.addEventListener("click", () => {
         if (cell.textContent === "") {
             // Riproduci il suono di click
             clickSound.currentTime = 0; // resetta per click rapidi
-            clickSound.play();
+            clickSound.play().catch(e => {
+                console.warn("Audio non riproducibile:", e);
+            });
 
             cell.textContent = currentPlayer;
 

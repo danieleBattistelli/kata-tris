@@ -1,0 +1,35 @@
+{
+    "manifest_version": 3,
+    "name": "Kata Tris Extension",
+    "version": "1.0",
+    "description": "Gioca a Tris direttamente dal browser.",
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icon16.png",
+            "48": "icon48.png",
+            "128": "icon128.png"
+        }
+    },
+    "permissions": [],
+    "host_permissions": [],
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
+    "author": "Il tuo nome",
+    "homepage_url": "https://github.com/tuo-username/kata-tris",
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "click.mp3",
+                "draw.mp3",
+                "win.mp3"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}
