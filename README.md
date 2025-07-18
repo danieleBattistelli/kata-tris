@@ -20,7 +20,7 @@
 </p>
 
 Il progetto è disponibile in due versioni:
-- **Versione Browser**: si trova nella cartella `Browser` e si avvia aprendo il file `index.html` con il browser.
+- **Versione Browser**: c'e' il link diretto!
 - **Versione Plug-in**: si trova nella cartella `Plug-in` e può essere caricata come plug-in nel browser.
 
 ---

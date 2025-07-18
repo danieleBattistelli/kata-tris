@@ -64,13 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- SUONO CLICK ---
-    const clickSound = new Audio("click.mp3");
+    const clickSound = new Audio("sounds/click.mp3");
 
     // --- SUONO VITTORIA ---
-    const winSound = new Audio("win.mp3");
+    const winSound = new Audio("sounds/win.mp3");
 
     // --- SUONO PAREGGIO ---
-    const drawSound = new Audio("draw.mp3");
+    const drawSound = new Audio("sounds/draw.mp3");
 
     cells.forEach((cell, idx) => {
         cell.addEventListener("click", () => {
