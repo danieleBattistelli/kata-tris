@@ -19,8 +19,5 @@
   <u>Il gioco tiene il conteggio delle vittorie e lo salva nel local storage!</u>
 </p>
 
-Il progetto è disponibile in due versioni:
-- **Versione Browser**: c'e' il link diretto!
-- **Versione Plug-in**: si trova nella cartella `Plug-in` e può essere caricata come plug-in nel browser.
-
+Il progetto è disponibile on line con link diretto!
 ---
