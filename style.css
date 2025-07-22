@@ -209,3 +209,60 @@ body {
     padding: 0;
     letter-spacing: 2px;
 }
+
+@media (max-width: 600px) {
+    #tv-frame {
+        width: 98vw;
+        height: auto;
+        min-width: unset;
+        min-height: unset;
+        padding: 8px 0;
+        border-width: 8px;
+        border-radius: 16px;
+        flex-direction: column;
+    }
+
+    #game-board {
+        grid-template-columns: repeat(3, 60px);
+        grid-template-rows: repeat(3, 60px);
+        gap: 3px;
+        margin: 0 auto;
+    }
+
+    .cell {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5em;
+        border-width: 3px;
+        padding: 0;
+    }
+
+    #win-counter {
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        font-size: 0.8em;
+        padding: 4px 8px;
+        margin-bottom: 8px;
+        border-radius: 8px;
+    }
+
+    #tv-labels {
+        position: static;
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    #tv-labels h1 {
+        font-size: 1em;
+        margin-bottom: 4px;
+    }
+
+    #tv-labels h3 {
+        font-size: 0.6em;
+    }
+}
