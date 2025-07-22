@@ -1,0 +1,21 @@
+name: Deploy sito statico su GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # usa "master" se è il tuo ramo principale
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del codice
+        uses: actions/checkout@v3
+
+      - name: Deploy su GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # se i tuoi file HTML/CSS/JS sono nella radice del repo
+

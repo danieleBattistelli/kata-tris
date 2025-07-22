@@ -16,7 +16,8 @@
   <b>Il classico gioco del Tris (Tic-Tac-Toe) in versione arcade!</b><br>
   <i>Realizzato con HTML, CSS e JavaScript.<br>
   Sfida un amico, allena la tua logica e divertiti!</i><br>
-  <u>Il gioco tiene il conteggio delle vittorie e lo salva nel local storage!</u>
+  <u>Il gioco tiene sempre memorizzato il conteggio delle vittorie!</u>
+  <u>E' possibile azzerarlo tramite il tasto Reset!</u>
 </p>
 
 Il progetto è disponibile on line con link diretto!
